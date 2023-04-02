@@ -1,0 +1,68 @@
+// C++ code
+//
+int LED1=2;
+int LED2=3;
+int SpeedPin1=A1;
+int dir11=5;
+int dir12=4;
+int SpeedPin2=A2;
+int dir21=9;
+int dir22=8;
+int mSpeed=255;
+int buzzer=10;
+int echoPin=7;
+int trigPin=6;
+int IRpin=11;
+
+void setup()
+{
+  pinMode(LED1, OUTPUT);
+  pinMode(LED2, OUTPUT);
+  pinMode(SpeedPin1,OUTPUT);
+  pinMode(SpeedPin2,OUTPUT);
+  pinMode(dir11,OUTPUT);
+  pinMode(dir12,OUTPUT);
+  pinMode(dir21,OUTPUT);
+  pinMode(dir22,OUTPUT);
+  pinMode(trigPin,OUTPUT);
+  pinMode(echoPin,INPUT);
+  Serial.begin(96000);
+}
+
+
+void loop()
+{
+  digitalWrite(LED1, HIGH);
+  digitalWrite(LED2, HIGH);
+  digitalWrite(dir11,HIGH);
+  digitalWrite(dir12,LOW);
+  digitalWrite(dir21,HIGH);
+  digitalWrite(dir22,LOW);
+  analogWrite(SpeedPin1,mSpeed);
+  analogWrite(SpeedPin2,mSpeed);
+  delay(5000); // Wait for 1000 millisecond(s)
+  
+  digitalWrite(LED1, LOW);
+  digitalWrite(LED2, LOW);
+  digitalWrite(dir11,LOW);
+  digitalWrite(dir12,HIGH);
+  digitalWrite(dir21,LOW);
+  digitalWrite(dir22,HIGH);
+  analogWrite(SpeedPin1,mSpeed);
+  analogWrite(SpeedPin2,mSpeed);
+  delay(5000); // Wait for 1000 millisecond(s)
+  
+  tone(buzzer, 500);
+  delay(1000);
+  noTone(buzzer);
+  delay(1000);
+  
+  digitalWrite(trigPin,LOW);
+  delayMicroseconds(10);
+  digitalWrite(echoPin,HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin,LOW);
+  delay(25);
+  
+}
+  
